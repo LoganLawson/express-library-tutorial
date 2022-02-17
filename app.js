@@ -12,7 +12,9 @@ var app = express();
 
 // mongoDB connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://loganlawson:wotJyq-foxhif-kyxne1@cluster0.ativ4.mongodb.net/local_library?retryWrites=true&w=majority';
+var dev_db_url = 'mongodb+srv://loganlawson:wotJyq-foxhif-kyxne1@cluster0.ativ4.mongodb.net/local_library?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
+
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
